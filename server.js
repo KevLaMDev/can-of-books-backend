@@ -4,10 +4,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { handle } = require('express/lib/application');
 
 const Book = require('./model/book');
-const { response } = require('express');
 
 mongoose.connect(process.env.DB_URL)
 
@@ -36,10 +34,10 @@ async function handleGetBooks(request, response) {
   let queryObject = {}; 
   
   if (request.query.email){
-    queryObject ={
+    queryObject = {
       email: request.query.email
-    }
-  }
+    };
+  };
 
   // let booksFromDb = await Book.find(queryObject);
   // response.send(booksFromDb);
