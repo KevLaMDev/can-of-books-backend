@@ -21,6 +21,6 @@ Start time: ____3:30_
 
 Finish time: ____5:30_
 
-Actual time needed to complete: ___2 hours_
+Actual time needed to complete: ___2 hours_.
 
 
