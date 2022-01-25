@@ -6,9 +6,19 @@
 ## Overview
 Creating an Online Bookstore Application<br></br>
 
-## Getting Started
+## Work flow
+
+## Card 1
 - Configured a new repository for our Back end Application
 - Added an empty dotenv file <br></br>
+- Added a dev branch <br></br>
+
+## Card 2
+- connected mongoose <br></br>
+- Saved data into MongoDb<br></br>
+
+
+
 
 
 
@@ -24,3 +34,4 @@ Finish time: ____5:30_
 Actual time needed to complete: ___2 hours_
 
 
+[TrelloBoard](https://trello.com/c/wI5I32vV/7-2-storage-as-a-user-id-like-my-books-to-persist-so-that-whenever-i-make-changes-i-can-see-the-my-full-list-of-best-books)
