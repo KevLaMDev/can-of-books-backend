@@ -6,6 +6,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const Book = require('./model/book');
+const { application } = require('express');
 
 mongoose.connect(process.env.DB_URL)
 
@@ -17,6 +18,7 @@ db.once('open', function () {
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const PORT = process.env.PORT || 3002;
 
@@ -28,7 +30,30 @@ app.get('/test', (request, response) => {
 })
 
 app.get('/books', handleGetBooks);
+app.post('/books', handlePostBooks);
+app.delete('/books/:id', handleDeleteBooks);
 
+async function handlePostBooks(request, response) {
+  try {
+    const newBook =  await Book.create(request.body);
+    response.status(201).send(newBook);
+  } catch (error){
+    response.status(500).send('Server Error');
+  };
+}
+
+
+async function handleDeleteBooks(request, response){
+  let id = request.params.id;
+  try {
+    await Book.findByIdAndDelete(id);
+    response.status(204).send('book deleted');
+
+  }catch(error){
+    response.status(404).send(`unable to delete ${id}`)
+
+  }
+}
 
 async function handleGetBooks(request, response) {
   let queryObject = {}; 
