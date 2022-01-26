@@ -31,6 +31,7 @@ app.get('/test', (request, response) => {
 
 app.get('/books', handleGetBooks);
 app.post('/books', handlePostBooks);
+app.delete('/books/:id', handleDeleteBooks);
 
 async function handlePostBooks(request, response) {
   try {
@@ -39,7 +40,20 @@ async function handlePostBooks(request, response) {
   } catch (error){
     response.status(500).send('Server Error');
   };
-};
+}
+
+
+async function handleDeleteBooks(request, response){
+  let id = request.params.id;
+  try {
+    await Book.findByIdAndDelete(id);
+    response.status(204).send('book deleted');
+
+  }catch(error){
+    response.status(404).send(`unable to delete ${id}`)
+
+  }
+}
 
 async function handleGetBooks(request, response) {
   let queryObject = {}; 
