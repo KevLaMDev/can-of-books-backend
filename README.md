@@ -51,7 +51,7 @@ Creating an Online Bookstore Application<br></br>
 
 ## Lab 13 PUT
 
-- added functionality for PUT request and update MongoDB database objects.
+- added functionality for PUT request and update MongoDB database objects..
 
 
 
