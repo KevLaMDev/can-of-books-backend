@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 const Book = require('./model/book');
 const { application } = require('express');
+const { default: axios } = require('axios');
 
 mongoose.connect(process.env.DB_URL)
 
@@ -32,6 +33,7 @@ app.get('/test', (request, response) => {
 app.get('/books', handleGetBooks);
 app.post('/books', handlePostBooks);
 app.delete('/books/:id', handleDeleteBooks);
+app.put('/books/:id', handlePutBooks);
 
 async function handlePostBooks(request, response) {
   try {
@@ -86,5 +88,15 @@ async function handleGetBooks(request, response) {
     response.status(500).send('Server Error');
   }
  }
+
+ async function handlePutBooks(request, response) {
+  let id = request.params.id;
+  try {
+    let updatedBook = await Book.findByIdAndUpdate(id, request.body, {new: true, overwrite: true});
+    response.status(200).send(updatedBook);
+  } catch (error){
+    response.status(400).send(`Unable to update book ${id}`);
+  };
+ };
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
