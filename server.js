@@ -6,8 +6,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const Book = require('./model/book');
-const { application } = require('express');
-const { default: axios } = require('axios');
+// const { application } = require('express');
+// const axios  = require('axios');
 
 mongoose.connect(process.env.DB_URL)
 
@@ -39,15 +39,15 @@ async function handlePostBooks(request, response) {
   try {
     // use create method on <modelSchema> passing in request.body
     // send back 201 status and the posted data 
-    const newBook =  await Book.create(request.body);
+    const newBook = await Book.create(request.body);
     response.status(201).send(newBook);
-  } catch (error){
+  } catch (error) {
     response.status(500).send('Server Error');
   };
 }
 
 
-async function handleDeleteBooks(request, response){
+async function handleDeleteBooks(request, response) {
   // retrieve id from request params and save to var
   let id = request.params.id;
   try {
@@ -55,17 +55,17 @@ async function handleDeleteBooks(request, response){
     let deletedBook = await Book.findByIdAndDelete(id);
     response.status(204).send(deletedBook);
 
-  }catch(error){
+  } catch (error) {
     response.status(404).send(`unable to delete ${id}`)
   }
 }
 
 async function handleGetBooks(request, response) {
   let queryObject = {}; // create the query obj
-  
+
   // if the request has an email query param
-    // make email prop with email value on query obj
-  if (request.query.email){ 
+  // make email prop with email value on query obj
+  if (request.query.email) {
     queryObject = {
       email: request.query.email
     };
@@ -73,7 +73,7 @@ async function handleGetBooks(request, response) {
 
   // use await <modelSchema>.find(queryObj)
   // if the result is not empty
-    // send it to the client
+  // send it to the client
   // else send not found
   // catch error 
   try {
@@ -87,16 +87,16 @@ async function handleGetBooks(request, response) {
   } catch (error) {
     response.status(500).send('Server Error');
   }
- }
+}
 
- async function handlePutBooks(request, response) {
+async function handlePutBooks(request, response) {
   let id = request.params.id;
   try {
-    let updatedBook = await Book.findByIdAndUpdate(id, request.body, {new: true, overwrite: true});
+    let updatedBook = await Book.findByIdAndUpdate(id, request.body, { new: true, overwrite: true });
     response.status(200).send(updatedBook);
-  } catch (error){
+  } catch (error) {
     response.status(400).send(`Unable to update book ${id}`);
   };
- };
+};
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
