@@ -49,6 +49,9 @@ Creating an Online Bookstore Application<br></br>
 
 - If all goes well, send back a success response. Handle any errors with proper error messages and response status codes.<br></br>
 
+## Lab 13 PUT
+
+- added functionality for PUT request and update MongoDB database objects..
 
 
 
@@ -76,3 +79,14 @@ Actual time needed to complete: ___1 hours_
 [TeamRule](https://docs.google.com/document/d/1RVJ2PoBzTdljn1Gm_S-nQU3y0B3QqDhNXiDn-QOIc2g/edit#heading=h.mx1b8tz44qrp)
 
 
+## 1/26 lab 13
+
+Name of feature: implemented post, delete, put routes 
+
+Estimate of time needed to complete: 4 hours
+
+Start time: ____3_pm
+
+Finish time: ____700 pm_
+
+Actual time needed to complete: ___4 1/2 hours_
